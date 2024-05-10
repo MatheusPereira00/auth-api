@@ -1,7 +1,10 @@
 package io.github.daylanbueno.authapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.github.daylanbueno.authapi.enums.RoleEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "TB_USUARIO")
 public class Usuario implements UserDetails {
@@ -30,6 +34,14 @@ public class Usuario implements UserDetails {
     private String senha;
     @Column(nullable = false)
     private RoleEnum role;
+
+    public Usuario(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    private List<Produto> produtos;
 
     public Usuario(String nome, String login, String senha, RoleEnum role) {
         this.nome = nome;

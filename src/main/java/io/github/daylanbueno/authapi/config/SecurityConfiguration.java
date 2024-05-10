@@ -29,6 +29,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authoriza -> authoriza
                         .requestMatchers(HttpMethod.GET, "/usuarios/admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/usuarios/user").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/produtos/admin").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/produtos/{produtoId}/mensagens").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/refresh-token").permitAll()
