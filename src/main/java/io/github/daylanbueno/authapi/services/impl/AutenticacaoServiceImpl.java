@@ -37,6 +37,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         return usuarioRepository.findByLogin(login);

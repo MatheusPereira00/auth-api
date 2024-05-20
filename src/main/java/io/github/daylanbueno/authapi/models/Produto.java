@@ -38,4 +38,10 @@ public class Produto {
     @OneToMany(mappedBy = "produto")
     private List<Mensagens> mensagens;
 
+    public Produto(long id, String nome, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
 }

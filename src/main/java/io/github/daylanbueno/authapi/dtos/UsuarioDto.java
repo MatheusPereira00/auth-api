@@ -7,5 +7,7 @@ public record UsuarioDto(
         String login,
         String senha,
         RoleEnum role
-) {
+){
+
 }
+

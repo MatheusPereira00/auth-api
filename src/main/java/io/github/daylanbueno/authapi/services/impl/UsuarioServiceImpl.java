@@ -3,6 +3,7 @@ package io.github.daylanbueno.authapi.services.impl;
 import io.github.daylanbueno.authapi.dtos.UsuarioDto;
 import io.github.daylanbueno.authapi.dtos.UsuarioResponseDTO;
 import io.github.daylanbueno.authapi.infra.exceptions.BusinessException;
+import io.github.daylanbueno.authapi.mapper.ResponseUser;
 import io.github.daylanbueno.authapi.models.Mensagens;
 import io.github.daylanbueno.authapi.models.Produto;
 import io.github.daylanbueno.authapi.models.Usuario;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -101,6 +103,25 @@ public class UsuarioServiceImpl implements UsuarioService {
                 .stream()
                 .map(user -> mapper.map(user, UsuarioResponseDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ResponseUser> findAllUsers2(){
+        List<Usuario> users = this.usuarioRepository.findAll();
+        return users
+                .stream()
+                .map(user -> mapper.map(user, ResponseUser.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Produto> findProducts(Long id) {
+        return produtoRepository.findProductByUsuarioId(id);
+    }
+
+    @Override
+    public List<Produto> findAllProducts() {
+        return produtoRepository.findAll();
     }
 
 }

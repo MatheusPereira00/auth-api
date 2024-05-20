@@ -4,10 +4,9 @@ import io.github.daylanbueno.authapi.models.Produto;
 import io.github.daylanbueno.authapi.models.Usuario;
 import io.github.daylanbueno.authapi.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/produtos")
@@ -26,4 +25,13 @@ public class ProdutoController {
         return produto;
     }
 
+    @GetMapping(path = "/usuario/{userId}")
+    public List<Produto> retrievePosts(@PathVariable("userId") Long id ) {
+        return usuarioService.findProducts(id);
+    }
+
+    @GetMapping
+    public List<Produto> findAllPosts() {
+        return usuarioService.findAllProducts();
+    }
 }
