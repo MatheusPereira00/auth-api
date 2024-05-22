@@ -6,6 +6,7 @@ import io.github.daylanbueno.authapi.mapper.ResponseUser;
 import io.github.daylanbueno.authapi.models.Produto;
 import io.github.daylanbueno.authapi.models.Usuario;
 import io.github.daylanbueno.authapi.services.UsuarioService;
+import io.github.daylanbueno.authapi.services.impl.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,14 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private EmailServiceImpl emailService;
+
     @PostMapping
     private UsuarioDto salvar(@RequestBody UsuarioDto usuarioDto) {
-        return  usuarioService.salvar(usuarioDto) ;
+        UsuarioDto usuarioDtoNew = usuarioService.salvar(usuarioDto);
+        emailService.enviarEmailTexto(usuarioDto.login(), "Novo usuario cadastrado", "Seu cadastro foi realizado com sucesso");
+        return usuarioDtoNew;
     }
 
     @GetMapping

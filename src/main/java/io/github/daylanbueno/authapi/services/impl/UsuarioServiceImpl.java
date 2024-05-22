@@ -14,6 +14,8 @@ import io.github.daylanbueno.authapi.services.UsuarioService;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -122,6 +124,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<Produto> findAllProducts() {
         return produtoRepository.findAll();
+    }
+
+    @Override
+    public Page<Produto> findAllProductsPageable(Pageable pageable){
+        return produtoRepository.findAll(pageable);
     }
 
 }

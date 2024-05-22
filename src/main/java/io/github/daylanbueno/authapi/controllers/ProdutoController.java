@@ -4,6 +4,7 @@ import io.github.daylanbueno.authapi.models.Produto;
 import io.github.daylanbueno.authapi.models.Usuario;
 import io.github.daylanbueno.authapi.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +34,10 @@ public class ProdutoController {
     @GetMapping
     public List<Produto> findAllPosts() {
         return usuarioService.findAllProducts();
+    }
+
+    @GetMapping(path = "/pageable")
+    public List<Produto> findAllProductsPageable(Pageable pageable) {
+        return usuarioService.findAllProductsPageable(pageable).getContent();
     }
 }

@@ -1,5 +1,6 @@
 package io.github.daylanbueno.authapi.services.impl;
 
+import io.github.daylanbueno.authapi.dtos.UsuarioDto;
 import io.github.daylanbueno.authapi.dtos.UsuarioResponseDTO;
 import io.github.daylanbueno.authapi.enums.RoleEnum;
 import io.github.daylanbueno.authapi.mapper.ResponseUser;
@@ -9,6 +10,7 @@ import io.github.daylanbueno.authapi.respositories.ProdutoRepository;
 import io.github.daylanbueno.authapi.respositories.UsuarioRepository;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -48,10 +50,6 @@ class UsuarioServiceImplTest {
     void setUp(){
         produto =  new Produto(1L, "Produto 1", "Description 1");
         usuario =  new Usuario("Usuario 2", "Login 2", "12345", RoleEnum.ADMIN);
-    }
-
-    @Test
-    void salvar() {
     }
 
     @Test

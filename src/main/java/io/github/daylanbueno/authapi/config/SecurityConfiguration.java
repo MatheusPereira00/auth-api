@@ -32,6 +32,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
                         .requestMatchers(HttpMethod.GET, "/produtos/usuario/{userId}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/produtos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/swagger-ui/index.html").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/produtos/pageable").permitAll()
                         .requestMatchers(HttpMethod.POST, "/produtos/admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/produtos/{produtoId}/mensagens").permitAll()
                         .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()

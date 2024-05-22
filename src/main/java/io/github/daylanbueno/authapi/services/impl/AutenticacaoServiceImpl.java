@@ -51,6 +51,7 @@ public class AutenticacaoServiceImpl implements AutenticacaoService {
                 .builder()
                 .token(geraTokenJwt(usuario,horaExpiracaoToken))
                 .refreshToken(geraTokenJwt(usuario,horaExpiracaoRefreshToken))
+                .login(usuario.getNome())
                 .build();
     }
 
